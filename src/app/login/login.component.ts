@@ -24,7 +24,6 @@ export class LoginComponent {
     "password": ""
   }
 
-
   http = inject(HttpClient);
 
   switchTab(tab: 'login' | 'register'): void {
@@ -59,5 +58,4 @@ export class LoginComponent {
     );
   }
   
-
 }
