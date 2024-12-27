@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
+  constructor(private authService: AuthService) { }
+
   activeTab: 'login' | 'register' = 'login';
 
   router = inject(Router)
@@ -41,9 +44,12 @@ export class LoginComponent {
   }
 
   login() {
+    console.log('Données envoyées :', this.log);
     this.http.post('http://localhost:8080/api/login', this.log).subscribe(
       (res: any) => {
+        console.log('Connexion réussie :', res);
         localStorage.setItem('currentUser', JSON.stringify(res));
+        this.authService.loginUser();
         this.router.navigate(['/']);
       },
       (error: HttpErrorResponse) => {
@@ -56,5 +62,5 @@ export class LoginComponent {
       }
     );
   }
-  
+
 }
