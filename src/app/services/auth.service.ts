@@ -30,9 +30,17 @@ export class AuthService {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
       const user = JSON.parse(currentUser);
-      return user.username || null; 
+      return user.username || null;  
     }
     return null;
   }
-  
+
+  getCurrentUserId(): number | null {
+    const currentUserId = localStorage.getItem('currentUser');
+    if (currentUserId) {
+      const user = JSON.parse(currentUserId);
+      return user.id || null;  
+    }
+    return null;
+  }
 }

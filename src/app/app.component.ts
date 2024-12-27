@@ -9,5 +9,5 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet, NavBarComponent]
 })
 export class AppComponent {
-  title = 'front';
+  title = 'MTMP';
 }

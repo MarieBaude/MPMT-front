@@ -44,7 +44,6 @@ export class LoginComponent {
   }
 
   login() {
-    console.log('Données envoyées :', this.log);
     this.http.post('http://localhost:8080/api/login', this.log).subscribe(
       (res: any) => {
         console.log('Connexion réussie :', res);
