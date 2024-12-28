@@ -1,16 +1,20 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MemberComponent } from "./member/member.component";
+import { TaskComponent } from "./task/task.component";
 
 @Component({
   selector: 'app-project-detail',
-  imports: [],
+  imports: [MemberComponent, TaskComponent],
   templateUrl: './project-detail.component.html'
 })
 export class ProjectDetailComponent {
   projectId!: number;
-  data: any = {};
+  data: any;
   http = inject(HttpClient);
+
+  activeTab: 'task' | 'member' | 'detail' = 'task';
 
   constructor(private route: ActivatedRoute) {}
 
@@ -34,4 +38,9 @@ export class ProjectDetailComponent {
       }
     );
   }
+
+  switchTab(tab: 'task' | 'member' | 'detail'): void {
+    this.activeTab = tab;
+  }
+
 }
