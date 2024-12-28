@@ -1,11 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-project-detail',
   imports: [],
-  templateUrl: './project-detail.component.html',
-  styles: ``
+  templateUrl: './project-detail.component.html'
 })
 export class ProjectDetailComponent {
+  projectId!: number;
+  data: any = {};
+  http = inject(HttpClient);
 
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.projectId = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.projectId) {
+      this.loadProjectDetails();
+    }
+  }
+
+  loadProjectDetails() {
+    const id = this.projectId;
+    const apiUrl = `http://localhost:8080/api/projects/${id}`;
+
+    this.http.get(apiUrl).subscribe(
+      (response: any) => {
+        this.data = response;
+      },
+      (error: any) => {
+        console.error('Erreur lors de la récupération des données :', error);
+      }
+    );
+  }
 }
