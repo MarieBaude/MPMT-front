@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -23,9 +24,15 @@ export class ProjectComponent {
   rolesForOtherProjects: { [projectName: string]: string } = {};  
   http = inject(HttpClient);
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      if (!isLoggedIn) {
+        this.router.navigate(['/error']);
+      }
+    });+
+
     this.loadProjects();
   }
 

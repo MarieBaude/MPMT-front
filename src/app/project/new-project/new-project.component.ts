@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-project',
@@ -9,7 +10,15 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './new-project.component.html'
 })
 export class NewProjectComponent {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnInit() {
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      if (!isLoggedIn) {
+        this.router.navigate(['/error']);
+      }
+    });
+  }
 
   getCurrentUserId() {
     return this.authService.getCurrentUserId();

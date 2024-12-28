@@ -1,71 +1,73 @@
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <h2 class="text-lg font-semibold mb-4 text-white">Projets créés</h2>
-  <table class="w-full text-sm text-left rtl:text-right text-gray-400">
-    <thead class="text-xs uppercase bg-gray-700 text-gray-400">
-      <tr>
-        @for (menu of menuItems; track menu) {
-        <th scope="col" class="px-6 py-3">{{ menu }}</th>
-        }
-      </tr>
-    </thead>
-    <tbody>
-      @for (item of createdProjects; track item.name) {
-      <tr class="border-b bg-gray-800 border-gray-700">
-        <th
-          scope="row"
-          class="px-6 py-4 font-medium whitespace-nowrap text-white"
-        >
-          {{ item.name }}
-        </th>
-        <td class="px-6 py-4">
-          {{ rolesForCreatedProjects[item.name] || "Rôle non défini" }}
-        </td>
-        <td class="px-6 py-4">
-          <a
-            [href]="item.actionLien"
-            class="font-medium text-blue-500 hover:underline"
+<div class="flex flex-col mt-12 mx-8">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <h2 class="text-lg font-semibold mb-4 text-white">Projets créés</h2>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-400">
+      <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+        <tr>
+          @for (menu of menuItems; track menu) {
+          <th scope="col" class="px-6 py-3">{{ menu }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of createdProjects; track item.name) {
+        <tr class="border-b bg-gray-800 border-gray-700">
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium whitespace-nowrap text-white"
           >
-            Tableau
-          </a>
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
-</div>
+            {{ item.name }}
+          </th>
+          <td class="px-6 py-4">
+            {{ rolesForCreatedProjects[item.name] || "Rôle non défini" }}
+          </td>
+          <td class="px-6 py-4">
+            <a
+              [href]="item.actionLien"
+              class="font-medium text-blue-500 hover:underline"
+            >
+              Tableau
+            </a>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
-  <h2 class="text-lg font-semibold mb-4 text-white">Autres projets</h2>
-  <table class="w-full text-sm text-left rtl:text-right text-gray-400">
-    <thead class="text-xs uppercase bg-gray-700 text-gray-400">
-      <tr>
-        @for (menu of menuItems; track menu) {
-        <th scope="col" class="px-6 py-3">{{ menu }}</th>
-        }
-      </tr>
-    </thead>
-    <tbody>
-      @for (item of otherProjects; track item.name) {
-      <tr class="border-b bg-gray-800 border-gray-700">
-        <th
-          scope="row"
-          class="px-6 py-4 font-medium whitespace-nowrap text-white"
-        >
-          {{ item.name }}
-        </th>
-        <td class="px-6 py-4">
-          {{ rolesForOtherProjects[item.name] || "Rôle non défini" }}
-        </td>
-        <td class="px-6 py-4">
-          <a
-            [href]="item.actionLien"
-            class="font-medium text-blue-500 hover:underline"
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
+    <h2 class="text-lg font-semibold mb-4 text-white">Autres projets</h2>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-400">
+      <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+        <tr>
+          @for (menu of menuItems; track menu) {
+          <th scope="col" class="px-6 py-3">{{ menu }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of otherProjects; track item.name) {
+        <tr class="border-b bg-gray-800 border-gray-700">
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium whitespace-nowrap text-white"
           >
-            Tableau
-          </a>
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
+            {{ item.name }}
+          </th>
+          <td class="px-6 py-4">
+            {{ rolesForOtherProjects[item.name] || "Rôle non défini" }}
+          </td>
+          <td class="px-6 py-4">
+            <a
+              [href]="item.actionLien"
+              class="font-medium text-blue-500 hover:underline"
+            >
+              Tableau
+            </a>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>
