@@ -3,10 +3,12 @@ import { AuthService } from '../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-project',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './project.component.html'
 })
 export class ProjectComponent {
