@@ -50,7 +50,7 @@ export class LoginComponent {
         console.log('Connexion réussie :', res);
         localStorage.setItem('currentUser', JSON.stringify(res));
         this.authService.loginUser();
-        this.router.navigate(['/']);
+        this.router.navigate(['/project']);
       },
       (error: HttpErrorResponse) => {
         if (error.status === 401) {
