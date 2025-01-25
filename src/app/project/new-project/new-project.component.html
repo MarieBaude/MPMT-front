@@ -1,25 +1,21 @@
 <div class="flex flex-col justify-center items-center min-h-screen">
   <form (submit)="createProject()" class="max-w-sm mx-auto">
     <div class="mb-5">
-      <label class="block mb-2 text-sm font-mediumtext-white"
-        >Nom du projet</label
-      >
       <input
         type="text"
         name="name"
         [(ngModel)]="project.name"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
+        class="bg-gray-600 border-gray-500 border text-white text-sm rounded-lg placeholder:text-gray-400"
+        placeholder="Nom du projet"
         required
       />
     </div>
     <div class="mb-5">
-      <label class="block mb-2 text-sm font-mediumtext-white"
-        >Description</label
-      >
       <textarea
         name="description"
         [(ngModel)]="project.description"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
+        class="bg-gray-600 border-gray-500 border text-white text-sm rounded-lg placeholder:text-gray-400"
+        placeholder="Description du projet"
         required
       ></textarea>
     </div>

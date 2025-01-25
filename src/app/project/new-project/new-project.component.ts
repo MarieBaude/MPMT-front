@@ -36,7 +36,7 @@ export class NewProjectComponent {
     this.project.createdById = this.getCurrentUserId();
     this.http.post('http://localhost:8080/api/projects/create', this.project).subscribe((res: any) => {
       if (res && !res.error) {
-        console.log('Project created successfully:', res);
+        this.router.navigate(['/project']);
       } else {
         console.error('Failed to create project:', res);
       }

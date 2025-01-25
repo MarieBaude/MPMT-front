@@ -1,6 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-member',
@@ -9,8 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styles: ``
 })
 export class MemberComponent {
-  projectId!: number;
-  http = inject(HttpClient);
+  memberData: any;
 
   menuItems = [
     "Username",
@@ -21,11 +18,5 @@ export class MemberComponent {
 
   @Input() projectData: any;
 
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.projectId = Number(this.route.snapshot.paramMap.get('id'));
-    console.log('projectData:', this.projectData);
-  }
-
 }
+

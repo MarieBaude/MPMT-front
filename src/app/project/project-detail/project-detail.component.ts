@@ -3,10 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MemberComponent } from "./member/member.component";
 import { TaskComponent } from "./task/task.component";
+import { NewMemberComponent } from './new-member/new-member.component';
 
 @Component({
   selector: 'app-project-detail',
-  imports: [MemberComponent, TaskComponent],
+  imports: [MemberComponent, TaskComponent, NewMemberComponent],
   templateUrl: './project-detail.component.html'
 })
 export class ProjectDetailComponent {

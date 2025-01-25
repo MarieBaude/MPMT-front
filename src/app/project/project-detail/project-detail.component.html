@@ -43,6 +43,7 @@
   @if(activeTab === 'task') {
   <app-task></app-task>
   } @else if(activeTab === 'member') {
+  <app-new-member></app-new-member>
   <app-member [projectData]="data"></app-member>
   } @else if(activeTab === 'detail') {
     <span>Nom : {{ data.name }}</span>
