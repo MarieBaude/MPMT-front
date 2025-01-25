@@ -17,14 +17,10 @@ export class NewMemberComponent {
 
   currentUserId!: number;
 
-
   member: any = {
-    userId: 0,
+    email: null,
     role: null,
   };
-
-
-
 
   constructor(private route: ActivatedRoute, private authService: AuthService) { }
 
