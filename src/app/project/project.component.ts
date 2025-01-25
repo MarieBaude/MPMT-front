@@ -72,7 +72,7 @@ export class ProjectComponent {
         });
       },
       (error) => {
-        console.error('Erreur lors de la récupération des données :', error);
+        console.log('Erreur lors de la récupération des données :', error);
       }
     );
   }
