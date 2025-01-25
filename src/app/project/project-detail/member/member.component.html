@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (role of projectData.projectRoles; track role.id) {
+    @for (role of projectData.projectRoles; track role.id; let i = $index) {
     <tr class="border-b bg-gray-800 border-gray-700 mt-8">
       <td class="px-6 py-4">
         {{ role.user.username }}
@@ -19,14 +19,13 @@
         {{ role.role }}
       </td>
       <td class="px-6 py-4 w-1/3">
-        <form class="flex" (submit)="changeRole()">
+        <form class="flex" (submit)="changeRole(i)">
           <select
-            [(ngModel)]="member.role"
+            [(ngModel)]="memberData[i].role"
             name="role"
-            class=" border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white placeholder:text-gray-400"
+            class="border text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white placeholder:text-gray-400"
             required
           >
-            <option [ngValue]="null" disabled>Sélectionner un rôle</option>
             <option value="observer">Observateur</option>
             <option value="member">Membre</option>
             <option value="admin">Administrateur</option>

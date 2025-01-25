@@ -13,11 +13,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MemberComponent {
   @Input() projectData: any;
-  memberData: any;
   isModalOpen: boolean = false;
   currentUserId!: number;
   http = inject(HttpClient);
   projectId!: number;
+  memberData: any[] = [];
 
   member: any = {
     userId: null,
@@ -37,39 +37,28 @@ export class MemberComponent {
     initFlowbite();
     this.currentUserId = this.getCurrentUserId() ?? 0;
     this.projectId = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.memberData = this.projectData.projectRoles.map((role: any) => ({
+      userId: role.user.id,
+      role: role.role,
+    }));
   }
 
   getCurrentUserId() {
     return this.authService.getCurrentUserId();
   }
 
-
-  openModal() {
-    const modalElement = document.getElementById('role-modal');
-    if (modalElement) {
-      modalElement.classList.remove('hidden');
-    }
-  }
-
-  closeModal() {
-    const modalElement = document.getElementById('role-modal');
-    if (modalElement) {
-      modalElement.classList.add('hidden');
-    }
-  }
-
-  changeRole() {
+  changeRole(index: number) {
     const apiUrl = `http://localhost:8080/api/projects/${this.projectId}/change-role?currentUserId=${this.currentUserId}`;
     const body = {
-      email: this.member.userId,
-      role: this.member.role,
+      userId: this.memberData[index].userId,  
+      role: this.memberData[index].role,    
     };
-
+    
     this.http.patch(apiUrl, body).subscribe(
       (res: any) => {
         if (res && !res.error) {
           console.log('Ok', res);
-          this.closeModal();
           window.location.reload();
         } else {
           console.error('KO', res);
