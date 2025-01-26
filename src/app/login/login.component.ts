@@ -35,7 +35,8 @@ export class LoginComponent {
 
   saveUser() {
     this.http.post('http://localhost:8080/api/users', this.user).subscribe((res: any) => {
-      if (res && res.success) {
+      if (res && !res.error) {
+        this.resetForm();
         console.log('User saved successfully:', res);
       } else {
         console.error('Failed to save user:', res);
@@ -49,7 +50,7 @@ export class LoginComponent {
         console.log('Connexion réussie :', res);
         localStorage.setItem('currentUser', JSON.stringify(res));
         this.authService.loginUser();
-        this.router.navigate(['/']);
+        this.router.navigate(['/project']);
       },
       (error: HttpErrorResponse) => {
         if (error.status === 401) {
@@ -62,4 +63,12 @@ export class LoginComponent {
     );
   }
 
+  resetForm() {
+    this.user = {
+      "username": "",
+      "password": "",
+      "email": ""
+    };
+  }
+  
 }
