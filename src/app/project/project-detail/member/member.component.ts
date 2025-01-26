@@ -25,10 +25,10 @@ export class MemberComponent {
   };
 
   menuItems = [
-    "Username",
-    "Email",
-    "Rôle",
-    "Action"
+    { id: 0, label: 'Username' },
+    { id: 1, label: 'Email' },
+    { id: 2, label: 'Rôle' },
+    { id: 3, label: 'Action' },
   ];
 
   constructor(private route: ActivatedRoute, private authService: AuthService) { }
@@ -42,6 +42,9 @@ export class MemberComponent {
       userId: role.user.id,
       role: role.role,
     }));
+
+    console.log('menuItems:', this.menuItems);
+  console.log('Keys:', this.menuItems.map(menu => menu.id));
   }
 
   getCurrentUserId() {
@@ -61,7 +64,7 @@ export class MemberComponent {
           console.log('Ok', res);
           window.location.reload();
         } else {
-          console.error('KO', res);
+          console.log('KO', res);
         }
       }
     );
