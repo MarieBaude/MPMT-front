@@ -29,6 +29,14 @@ export class LoginComponent {
 
   http = inject(HttpClient);
 
+  ngOnInit() {
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.router.navigate(['/all-project']);
+      }
+    });
+  }
+
   switchTab(tab: 'login' | 'register'): void {
     this.activeTab = tab;
   }
