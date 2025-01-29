@@ -1,14 +1,23 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-project',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './all-project.component.html',
 })
 export class AllProjectComponent {
-
+  projects: any[] = [];
   http = inject(HttpClient);
+
+  menuItems = [
+    "Nom",
+    "Créer par",
+    "Action"
+  ];
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.loadAllProjects();
@@ -19,7 +28,7 @@ export class AllProjectComponent {
 
     this.http.get(urlApi).subscribe(
       (response: any) => {
-        console.log('Réponse de l\'API :', response);
+        this.projects = response;
        
       },
       (error) => {
