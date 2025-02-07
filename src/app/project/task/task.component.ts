@@ -1,21 +1,22 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MemberComponent } from "../member/member.component";
-import { TaskComponent } from "../task/task.component";
-import { NewMemberComponent } from './new-member/new-member.component';
 
 @Component({
-  selector: 'app-project-detail',
-  imports: [MemberComponent, TaskComponent, NewMemberComponent],
-  templateUrl: './project-detail.component.html'
+  selector: 'app-task',
+  imports: [],
+  templateUrl: './task.component.html',
+  styles: ``
 })
-export class ProjectDetailComponent {
+export class TaskComponent {
   projectId!: number;
   data: any;
   http = inject(HttpClient);
 
-  activeTab: 'task' | 'member' | 'detail' = 'task';
+  todoTasks: any[] = []; 
+  inProgressTasks: any[] = []; 
+  doneTasks: any[] = []; 
+  closedTasks: any[] = []; 
 
   constructor(private route: ActivatedRoute) {}
 
@@ -28,11 +29,13 @@ export class ProjectDetailComponent {
 
   loadProjectDetails() {
     const id = this.projectId;
-    const apiUrl = `http://localhost:8080/api/projects/${id}`;
+    const apiUrl = `http://localhost:8080/api/tasks/project/${id}`;
 
     this.http.get(apiUrl).subscribe(
       (response: any) => {
         this.data = response;
+        this.filterTasksByStatus();
+        // console.log(this.data)
       },
       (error: any) => {
         console.error('Erreur lors de la récupération des données :', error);
@@ -40,8 +43,10 @@ export class ProjectDetailComponent {
     );
   }
 
-  switchTab(tab: 'task' | 'member' | 'detail'): void {
-    this.activeTab = tab;
+  filterTasksByStatus() {
+    this.todoTasks = this.data.filter((task: any) => task.status === 'TODO');
+    this.inProgressTasks = this.data.filter((task: any) => task.status === 'IN_PROGRESS');
+    this.doneTasks = this.data.filter((task: any) => task.status === 'DONE');
+    this.closedTasks = this.data.filter((task: any) => task.status === 'CLOSED');
   }
-
 }
