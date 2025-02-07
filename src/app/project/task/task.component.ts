@@ -13,12 +13,14 @@ export class TaskComponent {
   data: any;
   http = inject(HttpClient);
 
-  todoTasks: any[] = []; 
-  inProgressTasks: any[] = []; 
-  doneTasks: any[] = []; 
-  closedTasks: any[] = []; 
+  todoTasks: any[] = [];
+  inProgressTasks: any[] = [];
+  doneTasks: any[] = [];
+  closedTasks: any[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+  taskToDelete: any = null;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.projectId = Number(this.route.snapshot.paramMap.get('id'));
@@ -27,6 +29,8 @@ export class TaskComponent {
     }
   }
 
+
+  // AFFICAGE
   loadProjectDetails() {
     const id = this.projectId;
     const apiUrl = `http://localhost:8080/api/tasks/project/${id}`;
@@ -43,10 +47,48 @@ export class TaskComponent {
     );
   }
 
+
   filterTasksByStatus() {
     this.todoTasks = this.data.filter((task: any) => task.status === 'TODO');
     this.inProgressTasks = this.data.filter((task: any) => task.status === 'IN_PROGRESS');
     this.doneTasks = this.data.filter((task: any) => task.status === 'DONE');
     this.closedTasks = this.data.filter((task: any) => task.status === 'CLOSED');
+  }
+
+  // CREATION
+
+
+  // DELETE
+  openDeleteModal(task: any) {
+    this.taskToDelete = task;
+    const modal = document.getElementById('popup-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+    }
+  }
+
+  closeDeleteModal() {
+    this.taskToDelete = null;
+    const modal = document.getElementById('popup-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
+  }
+
+  deleteTask() {
+    if (this.taskToDelete) {
+      const apiUrl = `http://localhost:8080/api/tasks/${this.taskToDelete.id}`;
+
+      this.http.delete(apiUrl).subscribe(
+        () => {
+          this.loadProjectDetails();
+          this.closeDeleteModal();
+        },
+        (error) => {
+          console.error('Erreur lors de la suppression de la tâche :', error);
+          this.closeDeleteModal();
+        }
+      );
+    }
   }
 }
