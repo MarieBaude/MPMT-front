@@ -14,6 +14,7 @@ export class NewTaskComponent {
   http = inject(HttpClient);
   data: any;
   currentUserId!: number;
+  errorMessage: string | null = null;
 
   task: any = {
     name: null,
@@ -47,6 +48,7 @@ export class NewTaskComponent {
     if (modalElement) {
       modalElement.classList.add('hidden');
     }
+    this.errorMessage = null;
   }
 
   getCurrentUserId() {
@@ -89,11 +91,11 @@ export class NewTaskComponent {
           this.closeModal();
           window.location.reload();
         } else {
-          console.error('Erreur lors de la création de la tâche :', res);
+          this.errorMessage = res.error;
         }
       },
       (error) => {
-        console.error('Erreur lors de la création de la tâche :', error);
+        this.errorMessage = error.error;
       }
     );
   }

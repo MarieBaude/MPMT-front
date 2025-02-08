@@ -42,9 +42,6 @@ export class MemberComponent {
       userId: role.user.id,
       role: role.role,
     }));
-
-    console.log('menuItems:', this.menuItems);
-  console.log('Keys:', this.menuItems.map(menu => menu.id));
   }
 
   getCurrentUserId() {

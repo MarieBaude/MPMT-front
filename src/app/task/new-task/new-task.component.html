@@ -46,6 +46,12 @@
         </button>
       </div>
 
+      @if (errorMessage) {
+      <div class="text-red-500 mb-4">
+        {{ errorMessage }}
+      </div>
+      }
+
       <form class="p-4 md:p-5" (submit)="newTask()">
         <div class="mb-4">
           <div class="col-span-2 mb-4 sm:col-span-1">
