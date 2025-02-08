@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-task',
-  imports: [NewTaskComponent],
+  imports: [NewTaskComponent, RouterLink],
   templateUrl: './task.component.html',
-  styles: ``
 })
 export class TaskComponent {
   projectId!: number;
@@ -21,9 +21,14 @@ export class TaskComponent {
 
   taskToDelete: any = null;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      if (!isLoggedIn) {
+        this.router.navigate(['/error']);
+      }
+    });
     this.projectId = Number(this.route.snapshot.paramMap.get('id'));
     if (this.projectId) {
       this.loadProjectDetails();
@@ -55,8 +60,6 @@ export class TaskComponent {
     this.doneTasks = this.data.filter((task: any) => task.status === 'DONE');
     this.closedTasks = this.data.filter((task: any) => task.status === 'CLOSED');
   }
-
-  // CREATION
 
 
   // DELETE

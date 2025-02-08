@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { initFlowbite } from 'flowbite';
 import { FormsModule } from '@angular/forms';
 @Component({

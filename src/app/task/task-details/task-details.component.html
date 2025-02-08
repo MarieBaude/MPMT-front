@@ -1,0 +1,41 @@
+<a class="mx-8" href="/project">Retour</a>
+
+<div class="flex flex-col mt-12 mx-8">
+  <ul
+    class="flex flex-wrap text-sm font-medium text-center border-gray-700 text-gray-400"
+  >
+    <li class="me-2">
+      <button
+        (click)="switchTab('detail')"
+        [class]="
+          activeTab === 'detail'
+            ? 'inline-block p-4 rounded-t-lg bg-gray-800 text-white'
+            : 'inline-block p-4 rounded-t-lg hover:bg-gray-800 hover:text-gray-300'
+        "
+      >
+        Détails
+      </button>
+    </li>
+
+    <li class="me-2">
+      <button
+        (click)="switchTab('history')"
+        [class]="
+          activeTab === 'history'
+            ? 'inline-block p-4 rounded-t-lg bg-gray-800 text-white'
+            : 'inline-block p-4 rounded-t-lg hover:bg-gray-800 hover:text-gray-300'
+        "
+      >
+        Historique
+      </button>
+    </li>
+  </ul>
+
+  @if(activeTab === 'detail') {
+  <h1 class="mt-8">Détails</h1>
+
+
+  } @else if(activeTab === 'history') {
+  <app-history></app-history>
+  }
+</div>
