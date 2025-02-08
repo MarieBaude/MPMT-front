@@ -33,7 +33,7 @@ export class ProjectComponent {
       if (!isLoggedIn) {
         this.router.navigate(['/error']);
       }
-    });+
+    });
 
     this.loadProjects();
   }

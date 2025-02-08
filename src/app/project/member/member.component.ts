@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { initFlowbite } from 'flowbite';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
@@ -42,9 +42,6 @@ export class MemberComponent {
       userId: role.user.id,
       role: role.role,
     }));
-
-    console.log('menuItems:', this.menuItems);
-  console.log('Keys:', this.menuItems.map(menu => menu.id));
   }
 
   getCurrentUserId() {

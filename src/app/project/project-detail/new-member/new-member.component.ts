@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-new-member',
   imports: [FormsModule],
   templateUrl: './new-member.component.html',
-  styles: ``
 })
 export class NewMemberComponent {
   projectId!: number;

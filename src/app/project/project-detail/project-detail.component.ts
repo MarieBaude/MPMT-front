@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MemberComponent } from "./member/member.component";
-import { TaskComponent } from "./task/task.component";
+import { MemberComponent } from "../member/member.component";
+import { TaskComponent } from "../../task/task.component";
 import { NewMemberComponent } from './new-member/new-member.component';
 
 @Component({
