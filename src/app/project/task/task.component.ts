@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { NewTaskComponent } from './new-task/new-task.component';
 
 @Component({
   selector: 'app-task',
-  imports: [],
+  imports: [NewTaskComponent],
   templateUrl: './task.component.html',
   styles: ``
 })

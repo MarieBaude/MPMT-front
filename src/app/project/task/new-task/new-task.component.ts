@@ -4,21 +4,24 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { initFlowbite } from 'flowbite';
 import { FormsModule } from '@angular/forms';
-
 @Component({
-  selector: 'app-new-member',
+  selector: 'app-new-task',
   imports: [FormsModule],
-  templateUrl: './new-member.component.html',
+  templateUrl: './new-task.component.html'
 })
-export class NewMemberComponent {
+export class NewTaskComponent {
   projectId!: number;
   http = inject(HttpClient);
-
+  data: any;
   currentUserId!: number;
 
-  member: any = {
-    email: null,
-    role: null,
+  task: any = {
+    name: null,
+    description: null,
+    priority: null,
+    status: null,
+    endDate: null,
+    assigneeId: null
   };
 
   constructor(private route: ActivatedRoute, private authService: AuthService) { }
@@ -27,6 +30,9 @@ export class NewMemberComponent {
     initFlowbite();
     this.projectId = Number(this.route.snapshot.paramMap.get('id'));
     this.currentUserId = this.getCurrentUserId() ?? 0;
+    if (this.projectId) {
+      this.getProjectMembers();
+    }
   }
 
   openModal() {
@@ -47,23 +53,49 @@ export class NewMemberComponent {
     return this.authService.getCurrentUserId();
   }
 
-  newMember() {
-    const apiUrl = `http://localhost:8080/api/projects/${this.projectId}/invite?currentUserId=${this.currentUserId}`;
+  getProjectMembers() {
+    const id = this.projectId;
+    const apiUrl = `http://localhost:8080/api/projects/${id}/members`;
+
+    this.http.get(apiUrl).subscribe(
+      (response: any) => {
+        this.data = response;
+      },
+      (error: any) => {
+        console.error('Erreur lors de la récupération des données :', error);
+      }
+    );
+  }
+
+  newTask() {
+    const apiUrl = `http://localhost:8080/api/tasks`;
     const body = {
-      email: this.member.email,
-      role: this.member.role,
+      name: this.task.name,
+      description: this.task.description,
+      priority: this.task.priority,
+      status: this.task.status,
+      endDate: this.task.endDate,
+      projectId: this.projectId, 
+      assigneeId: this.task.assigneeId,
+      createdById: this.currentUserId 
     };
+
+    console.log("body : ", body)
 
     this.http.post(apiUrl, body).subscribe(
       (res: any) => {
         if (res && !res.error) {
-          console.log('Ok', res);
+          console.log('Tâche créée avec succès :', res);
           this.closeModal();
           window.location.reload();
         } else {
-          console.error('KO', res);
+          console.error('Erreur lors de la création de la tâche :', res);
         }
+      },
+      (error) => {
+        console.error('Erreur lors de la création de la tâche :', error);
       }
     );
   }
+
 }
