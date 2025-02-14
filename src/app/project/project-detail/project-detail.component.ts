@@ -4,11 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { MemberComponent } from "../member/member.component";
 import { TaskComponent } from "../../task/task.component";
 import { NewMemberComponent } from './new-member/new-member.component';
-import { CustomDatePipe } from '../../pipes/custom-date.pipe';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-project-detail',
-  imports: [MemberComponent, TaskComponent, NewMemberComponent, CustomDatePipe],
+  imports: [MemberComponent, TaskComponent, NewMemberComponent, DatePipe],
   templateUrl: './project-detail.component.html'
 })
 export class ProjectDetailComponent {

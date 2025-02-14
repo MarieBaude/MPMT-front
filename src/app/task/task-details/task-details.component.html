@@ -98,13 +98,18 @@
 
     <div class=" ">
       <label for="assignee">Assigné à :</label>
-      <input
-        type="text"
-        class="bg-gray-600 border-gray-500 border text-white text-sm rounded-lg placeholder:text-gray-400 mb-8 ml-8"
+      <select
         id="assignee"
-        [(ngModel)]="task.assignee.username"
+        [(ngModel)]="task.assignee.id"
         name="assignee"
-      />
+        class="bg-gray-600 border-gray-500 border text-white text-sm rounded-lg placeholder:text-gray-400 mb-8 ml-8"
+        required
+      >
+        <option [ngValue]="null" disabled>Sélectionner un membre</option>
+        @for (item of data; track $index) {
+        <option [ngValue]="item.id">{{ item.username }}</option>
+        }
+      </select>
     </div>
 
     <div class="grid grid-cols-2 gap-4 mb-8">
@@ -123,6 +128,11 @@
         Supprimer
       </button>
     </div>
+    @if (errorMessage) {
+      <div class="text-red-500 mb-4">
+        {{ errorMessage }}
+      </div>
+      }
   </form>
 
   } @else if(activeTab === 'history') {

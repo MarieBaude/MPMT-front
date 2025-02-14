@@ -2,11 +2,11 @@ import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { CustomDatePipe } from '../../pipes/custom-date.pipe';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-history',
-  imports: [CustomDatePipe],
+  imports: [DatePipe],
   templateUrl: './history.component.html'
 })
 export class HistoryComponent {

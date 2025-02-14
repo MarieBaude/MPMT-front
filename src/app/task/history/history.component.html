@@ -1,10 +1,15 @@
 @for (item of history; track $index) {
     <div class="flex flex-col my-8">
-        <span>Nom du champs : {{ item.changedField }}</span>
+      <span>Nom du champ : {{ item.changedField }}</span>
+      @if (item.changedField === 'assignee') {
+        <span>Ancienne valeur : {{ item.oldAssigneeUsername }}</span>
+        <span>Nouvelle valeur : {{ item.newAssigneeUsername }}</span>
+      } @else {
         <span>Ancienne valeur : {{ item.oldValue }}</span>
         <span>Nouvelle valeur : {{ item.newValue }}</span>
-        <span>Date : {{ item.updatedAt | customDate  }}</span>
-        <span>Nom : {{ item.users.username }}</span>
+      }
+      <span>Date : {{ item.updatedAt | date:'d MMMM y' : 'fr' }}</span>
+      <span>Modifié par : {{ item.username }}</span>
     </div>
     <hr>
-}
+  }
