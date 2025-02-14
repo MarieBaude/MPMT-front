@@ -3,7 +3,7 @@
         <span>Nom du champs : {{ item.changedField }}</span>
         <span>Ancienne valeur : {{ item.oldValue }}</span>
         <span>Nouvelle valeur : {{ item.newValue }}</span>
-        <span>Date : {{ item.updatedAt }}</span>
+        <span>Date : {{ item.updatedAt | customDate  }}</span>
         <span>Nom : {{ item.users.username }}</span>
     </div>
     <hr>

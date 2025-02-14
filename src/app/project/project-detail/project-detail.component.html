@@ -48,7 +48,7 @@
   } @else if(activeTab === 'detail') {
     <span>Nom : {{ data.name }}</span>
     <span>Créer par : {{ data.createdBy.username }}</span>
-    <span>Le : {{ data.createdAt}}</span>
-    <span>Description : {{ data.description}}</span>
+    <span>Le : {{ data.createdAt | customDate }}</span>
+    <span>Description : {{ data.description }}</span>
   }
 </div>

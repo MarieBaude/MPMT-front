@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { CustomDatePipe } from '../../pipes/custom-date.pipe';
 
 @Component({
   selector: 'app-history',
-  imports: [],
+  imports: [CustomDatePipe],
   templateUrl: './history.component.html'
 })
 export class HistoryComponent {
@@ -23,11 +24,11 @@ export class HistoryComponent {
       }
     });
     this.historyId = Number(this.route.snapshot.paramMap.get('id'));
-    this.loadTaskDetails();
+    this.loadHistoryDetails();
   }
 
 
-  loadTaskDetails() {
+  loadHistoryDetails() {
     const id = this.historyId;
     const apiUrl = `http://localhost:8080/api/histories/task/${id}`;
 
