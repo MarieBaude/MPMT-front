@@ -48,7 +48,7 @@
   } @else if(activeTab === 'detail') {
     <span>Nom : {{ data.name }}</span>
     <span>Créer par : {{ data.createdBy.username }}</span>
-    <span>Le : 28 décembre 2024</span>
-    <span>Description : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, cumque nulla unde quidem deleniti amet a eos cupiditate molestias perspiciatis ullam illum sed maxime quasi. Aperiam doloribus vel ipsum repellendus?</span>
+    <span>Le : {{ data.createdAt}}</span>
+    <span>Description : {{ data.description}}</span>
   }
 </div>

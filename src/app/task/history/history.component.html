@@ -1,0 +1,10 @@
+@for (item of history; track $index) {
+    <div class="flex flex-col my-8">
+        <span>Nom du champs : {{ item.changedField }}</span>
+        <span>Ancienne valeur : {{ item.oldValue }}</span>
+        <span>Nouvelle valeur : {{ item.newValue }}</span>
+        <span>Date : {{ item.updatedAt }}</span>
+        <span>Nom : {{ item.users.username }}</span>
+    </div>
+    <hr>
+}
