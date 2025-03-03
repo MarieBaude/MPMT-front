@@ -35,7 +35,6 @@ export class HistoryComponent {
     this.http.get(apiUrl).subscribe(
       (response: any) => {
         this.history = response;
-        // console.log("this.history", this.history)
       },
       (error: any) => {
         console.error('Erreur lors de la récupération des données :', error);
