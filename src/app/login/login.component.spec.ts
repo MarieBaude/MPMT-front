@@ -79,7 +79,7 @@ describe('LoginComponent', () => {
 
     component.login();
 
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/project']);
   });
 
 });

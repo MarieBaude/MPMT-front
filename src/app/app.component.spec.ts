@@ -17,7 +17,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
   });
 
-  it(`should have as title 'front'`, () => {
-    expect(component.title).toEqual('front');
+  it(`should have as title 'MTMP'`, () => {
+    expect(component.title).toEqual('MTMP');
   });
 });
