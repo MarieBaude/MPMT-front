@@ -1,0 +1,35 @@
+<div class="flex flex-col mt-12 mb-10 mx-8">
+  <div class="relative overflow-x-auto shadow-md">
+    <h2 class="text-lg font-semibold mb-4 text-white">Tous les projets</h2>
+
+    <table class="w-full text-sm text-left rtl:text-right text-gray-400">
+      <thead class="text-xs uppercase bg-gray-600 text-gray-400">
+        <tr>
+          @for (menu of menuItems; track menu) {
+          <th scope="col" class="px-6 py-3">{{ menu }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of projects; track item.name) {
+        <tr class="border-b bg-gray-800 border-gray-700">
+          <th class="px-6 py-4">
+            {{ item.name }}
+          </th>
+          <th class="px-6 py-4">
+            {{ item.createdBy.username }}
+          </th>
+          <td class="px-6 py-4">
+            <a
+              [routerLink]="['/project', item.id]"
+              class="font-medium text-blue-500 hover:underline"
+            >
+              Détails
+            </a>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

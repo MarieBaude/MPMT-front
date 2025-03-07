@@ -1,0 +1,54 @@
+<div class="flex flex-col mt-12 mx-8">
+  <ul
+    class="flex flex-wrap text-sm font-medium text-center border-gray-700 text-gray-400"
+  >
+    <li class="me-2">
+      <button
+        (click)="switchTab('task')"
+        [class]="
+          activeTab === 'task'
+            ? 'inline-block p-4 rounded-t-lg bg-gray-800 text-white'
+            : 'inline-block p-4 rounded-t-lg hover:bg-gray-800 hover:text-gray-300'
+        "
+      >
+        Tâches
+      </button>
+    </li>
+    <li class="me-2">
+      <button
+        (click)="switchTab('member')"
+        [class]="
+          activeTab === 'member'
+            ? 'inline-block p-4 rounded-t-lg bg-gray-800 text-white'
+            : 'inline-block p-4 rounded-t-lg hover:bg-gray-800 hover:text-gray-300'
+        "
+      >
+        Membre
+      </button>
+    </li>
+    <li class="me-2">
+      <button
+        (click)="switchTab('detail')"
+        [class]="
+          activeTab === 'detail'
+            ? 'inline-block p-4 rounded-t-lg bg-gray-800 text-white'
+            : 'inline-block p-4 rounded-t-lg hover:bg-gray-800 hover:text-gray-300'
+        "
+      >
+        Détails
+      </button>
+    </li>
+  </ul>
+
+  @if(activeTab === 'task') {
+  <app-task></app-task>
+  } @else if(activeTab === 'member') {
+  <app-new-member></app-new-member>
+  <app-member [projectData]="data"></app-member>
+  } @else if(activeTab === 'detail') {
+    <span>Nom : {{ data.name }}</span>
+    <span>Créer par : {{ data.createdBy.username }}</span>
+    <span>Le : {{ data.createdAt | date:'d MMMM y' : 'fr' }}</span>
+    <span>Description : {{ data.description }}</span>
+  }
+</div>

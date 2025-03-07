@@ -1,0 +1,160 @@
+<button
+  data-drawer-target="default-sidebar"
+  data-drawer-toggle="default-sidebar"
+  aria-controls="default-sidebar"
+  type="button"
+  class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+>
+  <span class="sr-only">Open sidebar</span>
+  <svg
+    class="w-6 h-6"
+    aria-hidden="true"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      clip-rule="evenodd"
+      fill-rule="evenodd"
+      d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+    ></path>
+  </svg>
+</button>
+
+<aside
+  id="default-sidebar"
+  class="top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+  aria-label="Sidenav"
+>
+  <div class="py-5 px-3 h-full border-r bg-gray-800 border-gray-700">
+    @if (isLoggedIn) {
+    <div
+      class="pb-5 mb-5 space-y-2 border-b border-gray-200 dark:border-gray-700"
+    >
+      <div class="flex items-center gap-4 px-2">
+        <svg
+          class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 18"
+        >
+          <path
+            d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"
+          />
+        </svg>
+        <div class="font-medium dark:text-white">
+          <span class="capitalize">{{ username }}</span>
+        </div>
+      </div>
+    </div>
+    }
+    <ul>
+      <li>
+        <a
+          href="/all-project"
+          class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="14"
+            width="15.75"
+            viewBox="0 0 576 512"
+          >
+            <path
+              fill="#eaeaea"
+              d="M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32l0 96L0 384c0 35.3 28.7 64 64 64l192 0 0-64L64 384l0-224 192 0 0-64L64 96l0-64zM288 192c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-128c0-17.7-14.3-32-32-32l-98.7 0c-8.5 0-16.6-3.4-22.6-9.4L409.4 9.4c-6-6-14.1-9.4-22.6-9.4L320 0c-17.7 0-32 14.3-32 32l0 160zm0 288c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-128c0-17.7-14.3-32-32-32l-98.7 0c-8.5 0-16.6-3.4-22.6-9.4l-13.3-13.3c-6-6-14.1-9.4-22.6-9.4L320 288c-17.7 0-32 14.3-32 32l0 160z"
+            />
+          </svg>
+          <span class="flex-1 ml-3 text-left whitespace-nowrap"
+            >Tous les projets</span
+          >
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="/project"
+          class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="14"
+            width="14"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="#eaeaea"
+              d="M64 480H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H288c-10.1 0-19.6-4.7-25.6-12.8L243.2 57.6C231.1 41.5 212.1 32 192 32H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64z"
+            />
+          </svg>
+          <span class="flex-1 ml-3 text-left whitespace-nowrap"
+            >Mes projets</span
+          >
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="/new-project"
+          class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="14"
+            width="12.25"
+            viewBox="0 0 448 512"
+          >
+            <path
+              fill="#eaeaea"
+              d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"
+            />
+          </svg>
+          <span class="flex-1 ml-3 text-left whitespace-nowrap">Nouveau projet</span>
+        </a>
+      </li>
+
+      <li>
+        @if (!isLoggedIn) {
+        <a
+          href="/login"
+          class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="14"
+            width="12.25"
+            viewBox="0 0 448 512"
+          >
+            <path
+              fill="#eaeaea"
+              d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z"
+            />
+          </svg>
+          <span class="flex-1 ml-3 text-left whitespace-nowrap">Connexion</span>
+        </a>
+        } @else {
+        <button
+          (click)="logout()"
+          class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="14"
+            width="14"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="#eaeaea"
+              d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+            />
+          </svg>
+          <span class="flex-1 ml-3 text-left whitespace-nowrap"
+            >Déconnexion</span
+          >
+        </button>
+        }
+      </li>
+    </ul>
+  </div>
+</aside>
