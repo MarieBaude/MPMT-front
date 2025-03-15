@@ -58,7 +58,7 @@ export class LoginComponent {
   login() {
     this.http.post('http://localhost:8080/api/login', this.log).subscribe(
       (res: any) => {
-        console.log('Connexion réussie :', res);
+        // console.log('Connexion réussie :', res);
         localStorage.setItem('currentUser', JSON.stringify(res));
         this.authService.loginUser();
         this.router.navigate(['/project']);

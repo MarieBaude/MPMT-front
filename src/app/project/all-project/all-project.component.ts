@@ -38,7 +38,7 @@ export class AllProjectComponent {
        
       },
       (error) => {
-        console.log('Erreur lors de la récupération des données :', error);
+        // console.log('Erreur lors de la récupération des données :', error);
       }
     );
   }

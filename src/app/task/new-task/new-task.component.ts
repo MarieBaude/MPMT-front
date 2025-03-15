@@ -82,12 +82,12 @@ export class NewTaskComponent {
       createdById: this.currentUserId 
     };
 
-    console.log("body : ", body)
+    // console.log("body : ", body)
 
     this.http.post(apiUrl, body).subscribe(
       (res: any) => {
         if (res && !res.error) {
-          console.log('Tâche créée avec succès :', res);
+          // console.log('Tâche créée avec succès :', res);
           this.closeModal();
           window.location.reload();
         } else {

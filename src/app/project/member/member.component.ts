@@ -58,10 +58,10 @@ export class MemberComponent {
     this.http.patch(apiUrl, body).subscribe(
       (res: any) => {
         if (res && !res.error) {
-          console.log('Ok', res);
+          // console.log('Ok', res);
           window.location.reload();
         } else {
-          console.log('KO', res);
+          // console.log('KO', res);
         }
       }
     );
